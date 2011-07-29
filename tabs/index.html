@@ -33,21 +33,25 @@
                     var options = $.extend({
                         tab : 'tabs',  // Tabs
                         pane : 'panes', // Panes
-                        selected : 'selected', // Selected Clas     
+                        selected : 'selected', // Selected Clas    
+                        index: 1, //default index 
                     });
                     return this.each(function(){
                         var tab = $('.'+options.tab);
                         var pane = $('.'+options.pane);
                         var sel = options.selected;
+                        
+                        $(pane).find('div').eq(options.index).addClass(sel);
+                        $(tab).find('a').eq(options.index).addClass(sel);
                                  
                         $('> a',tab).live('click',function(e){
                             e.preventDefault();
-                            var index = $('> a',tab).index(this);
+                            var idx = $('> a',tab).index(this);
                             
                             $('> div',pane).removeClass(sel);
                             $('> a',tab).removeClass(sel);
                             $(this).addClass(sel);
-                            $(pane).find('div').eq(index).addClass(sel);
+                            $(pane).find('div').eq(idx).addClass(sel);
                         });
                         
                     });
@@ -63,13 +67,13 @@
 	<body>
         <div id="tabs">
 		    <div class="tabs">
-			    <a href="" class="selected">Tab 1</a>
+			    <a href="">Tab 1</a>
 			    <a href="">Tab 2</a>
 			    <a href="">Tab 3</a>
 		    </div>
             
             <div class="panes">
-                <div class="selected">Tab Content 1</div>
+                <div>Tab Content 1</div>
                 <div>Tab Content 2</div>
                 <div>Tab Content 3</div>
             </div>

@@ -7,13 +7,22 @@
             .panes div
             {
                 display: none;
-                border: 1px solid orange;
                 width: 120px;
                 height: 120px; 
             }
             .panes div.selected 
             {
+                background: orange;
                 display: block;
+            }
+            .tabs a
+            {
+                margin: 0;
+                text-decoration: none;
+            }
+            .tabs a.selected
+            {
+                background: orange;
             }
 
         </style>
@@ -22,13 +31,12 @@
 				
 				$('.tabs a').live('click',function(e){
 					e.preventDefault();
-					
 					var index = $('.tabs a').index(this);
-					
+                    
                     $('.panes div').removeClass('selected');
-					$('.panes').find('div').eq(index).addClass('selected');
-					
-					
+					$('.tabs a').removeClass('selected');
+                    $(this).addClass('selected');
+                    $('.panes').find('div').eq(index).addClass('selected');
 				});
 				
 			});
@@ -37,13 +45,13 @@
 	
 	<body>
 		<div class="tabs">
-			<a href="">Tab 1</a>
+			<a href="" class="selected">Tab 1</a>
 			<a href="">Tab 2</a>
 			<a href="">Tab 3</a>
 		</div>
         
         <div class="panes">
-            <div>Tab Content 1</div>
+            <div class="selected">Tab Content 1</div>
             <div>Tab Content 2</div>
             <div>Tab Content 3</div>
         </div>

@@ -28,24 +28,26 @@
         </style>
 		<script type="text/javascript">
             (function( $ ){
-                $.fn.tabs = function()
+                $.fn.tabs = function(options)
                 {
+                    var options = $.extend({
+                        tab : 'tabs',  // Tabs
+                        pane : 'panes', // Panes
+                        selected : 'selected', // Selected Clas     
+                    });
                     return this.each(function(){
-                        
-                        var $this = $(this);
-                        var tabs = $this.eq(0).attr('class');
-                        var selected = 'selected';
-                        
-                        //console.log($(this).children('.tabs').children('a'));
+                        var tab = $('.'+options.tab);
+                        var pane = $('.'+options.pane);
+                        var sel = options.selected;
                                  
-                        $('.tabs a').live('click',function(e){
+                        $('> a',tab).live('click',function(e){
                             e.preventDefault();
-                            var index = $('.tabs a').index(this);
+                            var index = $('> a',tab).index(this);
                             
-                            $('.panes div').removeClass('selected');
-                            $('.tabs a').removeClass('selected');
-                            $(this).addClass('selected');
-                            $('.panes').find('div').eq(index).addClass('selected');
+                            $('> div',pane).removeClass(sel);
+                            $('> a',tab).removeClass(sel);
+                            $(this).addClass(sel);
+                            $(pane).find('div').eq(index).addClass(sel);
                         });
                         
                     });

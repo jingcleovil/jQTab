@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>JQUERY TAB</title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+        <style type="text/css">
+
+            .panes div
+            {
+                display: none;
+                width: 120px;
+                height: 120px; 
+            }
+            .panes div.selected 
+            {
+                background: orange;
+                display: block;
+            }
+            .tabs a
+            {
+                margin: 0;
+                text-decoration: none;
+            }
+            .tabs a.selected
+            {
+                background: orange;
+            }
+
+        </style>
+		<script type="text/javascript">
+            (function( $ ){
+                $.fn.tabs = function()
+                {
+                    return this.each(function(){
+                        
+                        var $this = $(this);
+                        var tabs = $this.eq(0).attr('class');
+                        var selected = 'selected';
+                        
+                        //console.log($(this).children('.tabs').children('a'));
+                                 
+                        $('.tabs a').live('click',function(e){
+                            e.preventDefault();
+                            var index = $('.tabs a').index(this);
+                            
+                            $('.panes div').removeClass('selected');
+                            $('.tabs a').removeClass('selected');
+                            $(this).addClass('selected');
+                            $('.panes').find('div').eq(index).addClass('selected');
+                        });
+                        
+                    });
+                }    
+            })( jQuery );
+            
+			$(document).ready(function(){
+				$('#tabs').tabs();			
+			});
+		</script>
+	</head>
+	
+	<body>
+        <div id="tabs">
+		    <div class="tabs">
+			    <a href="" class="selected">Tab 1</a>
+			    <a href="">Tab 2</a>
+			    <a href="">Tab 3</a>
+		    </div>
+            
+            <div class="panes">
+                <div class="selected">Tab Content 1</div>
+                <div>Tab Content 2</div>
+                <div>Tab Content 3</div>
+            </div>
+        </div>
+
+	</body>
+</html>

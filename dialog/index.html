@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>JQUERY TAB</title>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="dialog-lib.js"></script>
+        
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $('#dialog').center({open:true});
+                $(window).bind('resize', function() {
+                    $('#dialog').center({transition:10});
+                });		
+			});
+		</script>
+	</head>
+	
+	<body>
+        <div id="dialog" style="width: 300px; height: 300px; background: orange;">
+	    
+        </div>
+
+	</body>
+</html>
